@@ -1,0 +1,23 @@
+{
+  "name": "taktwerk/tw-yii2-swisstransport",
+  "type": "yii2-extension",
+  "description": "Taktwerk Yii2 Swiss Transport plugin",
+  "keywords": [
+    "tw-yii2-swisstransport",
+    "yii2"
+  ],
+  "license": "BSD-3-Clause",
+  "homepage": "http://www.taktwerk.com/",
+  "minimum-stability": "stable",
+  "require": {
+    "linslin/yii2-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "taktwerk\\swisstransport\\": "src/"
+    }
+  },
+  "extra": {
+    "bootstrap": "taktwerk\\swisstransport\\Bootstrap"
+  }
+}
