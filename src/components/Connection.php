@@ -1,13 +1,24 @@
 <?php
 namespace taktwerk\swisstransport\components;
 
-use Yii;
-
 class Connection
 {
 
+    /**
+     * @var array Bus lines
+     */
     private $bus;
+
+    /**
+     * @var string The API to call.
+     * Doc: http://transport.opendata.ch/docs.html
+     */
+
     private $apiUrl;
+    /**
+     * How much next departures to show
+     * @var int
+     */
     private $limit;
 
     public function __construct()
@@ -17,6 +28,10 @@ class Connection
         $this->limit = \Yii::$app->getModule('swisstransport')->limit;
     }
 
+    /**
+     * Return next departure times as array
+     * @return array|bool
+     */
     public function getNext()
     {
         $result = [];
@@ -46,6 +61,12 @@ class Connection
         return $result;
     }
 
+    /**
+     * Make API request
+     * @param $from
+     * @param $to
+     * @return mixed
+     */
     private function call($from, $to)
     {
         $curl = curl_init();
