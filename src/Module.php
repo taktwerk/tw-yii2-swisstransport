@@ -28,14 +28,14 @@ class Module extends BaseModule
      * @var array Bus lines
      */
     public $busLines = [
-        'bus5' => [
+        'Bus 5' => [
             'from' => 'St. Gallen, Uni/Dufourstrasse',
             'to' => [
                 'St. Gallen, Bahnhof',
                 'St. Gallen, Rotmonten',
             ]
         ],
-        'bus9' => [
+        'Bus 9' => [
             'from' => 'St. Gallen, Gatterstrasse',
             'to' => [
                 'St. Gallen, Behnhof Nord',
@@ -43,4 +43,10 @@ class Module extends BaseModule
             ]
         ]
     ];
+
+    /**
+     * How much next departures to show
+     * @var int
+     */
+    public $limit = 2;
 }
