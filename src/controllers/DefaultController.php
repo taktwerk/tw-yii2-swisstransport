@@ -11,6 +11,6 @@ class DefaultController extends Controller
     {
         $connection = new Connection();
         $busLines = $connection->getNext();
-        return $this->renderAjax('index', compact('busLines'));
+        return $this->renderAjax('/swisstransport/index', compact('busLines'));
     }
 }
