@@ -1,4 +1,4 @@
-<div class="col-sm-12">'
+<div class="col-sm-12">
     <h4><?= \Yii::t('app', 'Bus Lines') ?></h4>
     <?php foreach ($busLines as $bus => $line): ?>
         <div class="row">
