@@ -20,6 +20,7 @@ class DepartureWidget extends Widget
         $url = Url::toRoute(['/swisstransport'], true);
         $js = <<<JS
 $(document).ready(function () {
+    $('#swisstransport').html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>');
     $.ajax('$url')
         .done(function(data) {
             $('#swisstransport').html(data);
