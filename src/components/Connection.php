@@ -57,7 +57,7 @@ class Connection extends Component
                     $response = $this->call(urlencode($bus['from']), urlencode($to));
                     $time = [];
                     foreach ($response->connections as $connection) {
-                        $time[] = date('H:i', $connection->from->departureTimestamp);
+                        $time[] = \Yii::$app->getFormatter()->asTime($connection->from->departureTimestamp ,'short');
                     }
                     $departure[$to] = implode(', ', $time);
                 }
