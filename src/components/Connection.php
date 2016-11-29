@@ -100,7 +100,7 @@ class Connection extends Component
             $ch_error = curl_error($curl);
             curl_close($curl);
             $result = json_decode($result);
-            \Yii::$app->getCache()->set($key, $result, 60);
+            \Yii::$app->getCache()->set($key, $result, $this->cacheTime);
         }
         return $result;
     }
