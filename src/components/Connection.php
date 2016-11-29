@@ -25,7 +25,13 @@ class Connection extends Component
     private $limit;
 
     /**
-     * @var
+     * Time in seconds until cache is refreshed
+     * @var int
+     */
+    private $cacheTime = 60;
+
+    /**
+     * @var \taktwerk\swisstransport\Module
      */
     protected $module;
 
@@ -36,6 +42,7 @@ class Connection extends Component
         $this->bus = $this->module->busLines;
         $this->apiUrl = $this->module->apiUrl;
         $this->limit = $this->module->limit;
+        $this->cacheTime = $this->module->cacheTime;
     }
 
     /**
@@ -81,14 +88,20 @@ class Connection extends Component
     {
         $curl = curl_init();
         $url = $this->apiUrl . '?from=' . $from . '&to=' . $to . '&direct=1&limit=' . $this->limit . '&date=' . date('Y-m-d', time());
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-        $result = curl_exec($curl);
-        $ch_error = curl_error($curl);
-        curl_close($curl);
-        return json_decode($result);
+        $key = md5($url);
+        $result = \Yii::$app->getCache()->get($key);
+        if ($result === false) {
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+            $result = curl_exec($curl);
+            $ch_error = curl_error($curl);
+            curl_close($curl);
+            $result = json_decode($result);
+            \Yii::$app->getCache()->set($key, $result, 60);
+        }
+        return $result;
     }
 }

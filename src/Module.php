@@ -49,4 +49,10 @@ class Module extends BaseModule
      * @var int
      */
     public $limit = 2;
+
+    /**
+     * Time in seconds until cache is refreshed
+     * @var int
+     */
+    public $cacheTime = 60;
 }
