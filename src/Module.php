@@ -38,7 +38,7 @@ class Module extends BaseModule
         'Bus 9' => [
             'from' => 'St. Gallen, Gatterstrasse',
             'to' => [
-                'St. Gallen, Behnhof Nord',
+                'St. Gallen, Bahnhof Nord',
                 'St Gallen, Neudorf',
             ]
         ]
