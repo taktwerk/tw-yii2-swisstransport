@@ -4,6 +4,7 @@ namespace taktwerk\swisstransport\components;
 use yii\base\Component;
 use taktwerk\swisstransport\Module;
 use taktwerk\swisstransport\exception\Exception;
+use taktwerk\swisstransport\exception\ApiException;
 
 class Connection extends Component
 {
@@ -100,7 +101,7 @@ class Connection extends Component
      * @param $from
      * @param $to
      * @return mixed
-     * @throws Exception
+     * @throws ApiException
      */
     private function call($from, $to)
     {
@@ -118,7 +119,7 @@ class Connection extends Component
             $result = curl_exec($curl);
             $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
             if ($httpcode != 302 && $httpcode != 200) {
-                throw new Exception (\Yii::t('app', 'Bad response from API') . $result);
+                throw new ApiException (\Yii::t('app', 'No response from API') . $result);
             }
             curl_close($curl);
             $result = json_decode($result);
