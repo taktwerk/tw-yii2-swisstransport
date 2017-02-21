@@ -119,7 +119,7 @@ class Connection extends Component
             $result = curl_exec($curl);
             $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
             if ($httpcode != 302 && $httpcode != 200) {
-                throw new ApiException (\Yii::t('app', 'No response from API') . $result);
+                throw new ApiException (\Yii::t('app', 'No response from API'));
             }
             curl_close($curl);
             $result = json_decode($result);

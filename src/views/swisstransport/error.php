@@ -11,6 +11,7 @@
     <div class="row">
         <div class="col-sm-12">
             <?= Yii::t('app', 'Not available at the moment') ?>
+            <br>
             <?=$error ?>
         </div>
     </div>
