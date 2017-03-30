@@ -55,4 +55,10 @@ class Module extends BaseModule
      * @var int
      */
     public $cacheTime = 60;
+
+    /**
+     * Time in seconds until the API request times out
+     * @var int
+     */
+    public $apiTimeout = 3000;
 }
